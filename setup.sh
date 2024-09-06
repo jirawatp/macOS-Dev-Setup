@@ -99,4 +99,10 @@ if ! command -v composer &>/dev/null; then
   brew install composer
 fi
 
+# Step 9: Install jq
+if ! command -v jq &>/dev/null; then
+  echo "Installing jq..."
+  brew install jq
+fi
+
 echo "Setup complete!"

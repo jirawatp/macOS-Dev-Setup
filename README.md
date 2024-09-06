@@ -1,16 +1,30 @@
 # macOS-Dev-Setup
 
-This repository contains a shell script to set up a development environment on a new macOS computer. The script installs Homebrew, NVM, Node.js, Yarn, React, React Native, Go, Python, Java (OpenJDK), and Composer.
+This repository contains scripts to help set up a development environment on a new macOS computer. The scripts install various tools and automate the process of cloning and updating repositories from GitHub, as well as installing commonly used applications.
 
 ## Prerequisites
 
-Before running the script, make sure you have the following:
+Before running the scripts, make sure you have the following:
 
 - macOS
 - Terminal access
 - Internet connection
+- GitHub personal access token (for `clone-repos.sh`)
 
-## Installation
+## Scripts Overview
+
+1. **`setup.sh`**: Installs all the necessary development tools (Homebrew, NVM, Node.js, Yarn, React, React Native, Go, Python, Java, jq, and Composer).
+2. **`clone-repos.sh`**: Clones all your GitHub repositories into the `Documents/GitHub` folder.
+3. **`update-repos.sh`**: Updates all repositories in the `Documents/GitHub` folder by fetching and pulling the latest changes for the specified branches.
+4. **`install-apps.sh`**: Installs commonly used applications like Postman, VSCode, Xcode, MS Office, LINE, Sourcetree, TablePlus, FileZilla, and Google Chrome.
+
+## Step-by-Step Usage
+
+### 1. Setup Development Environment
+
+The `setup.sh` script installs all necessary tools for your development environment.
+
+#### Usage:
 
 1. **Clone the repository**:
     ```bash
@@ -28,85 +42,89 @@ Before running the script, make sure you have the following:
     ./setup.sh
     ```
 
-## Script Overview
+This script will install:
+- Homebrew
+- NVM (Node Version Manager)
+- Node.js (using NVM)
+- Yarn
+- Create React App and React Native CLI
+- Go
+- Python
+- Java (OpenJDK)
+- jq (for JSON processing)
+- Composer (PHP dependency manager)
 
-The script performs the following steps:
+### 2. Clone All Repositories
 
-1. **Install Homebrew**: The macOS package manager.
-2. **Add Homebrew to PATH**: Ensures Homebrew is available in the terminal.
-3. **Install NVM (Node Version Manager)**: Manages multiple Node.js versions.
-4. **Install Node.js**: Using NVM to install the latest LTS version.
-5. **Install Yarn**: A package manager for JavaScript.
-6. **Install Create React App and React Native CLI**: Tools for React and React Native development.
-7. **Install Go**: A programming language.
-8. **Set up Go workspace**: Configures the Go environment.
-9. **Install Python**: A programming language.
-10. **Install Java (OpenJDK)**: A programming language and platform.
-11. **Set up Java environment variables**: Configures the Java environment.
-12. **Install Composer**: A dependency manager for PHP.
+The `clone-repos.sh` script will clone all your GitHub repositories into the `Documents/GitHub` folder.
 
-## Verifying the Installation
+#### Prerequisites:
 
-After the script completes, you can verify the installation of each tool by running the following commands:
-
-- **Homebrew**:
+- Install `jq` (if not already installed by `setup.sh`):
     ```bash
-    brew --version
+    brew install jq
     ```
 
-- **NVM**:
+- Replace `your_github_username` and `your_personal_access_token` with your GitHub credentials in the script.
+
+#### Usage:
+
+1. **Make the script executable**:
     ```bash
-    nvm --version
+    chmod +x clone-repos.sh
     ```
 
-- **Node.js**:
+2. **Run the script**:
     ```bash
-    node --version
+    ./clone-repos.sh
     ```
 
-- **Yarn**:
+The script will fetch and clone all repositories associated with your GitHub account into the `Documents/GitHub` directory.
+
+### 3. Update All Repositories
+
+The `update-repos.sh` script will fetch and pull the latest changes for the specified branches (`main`, `master`, `develop`, `beta`, and `nonprod`) in all repositories located in the `Documents/GitHub` folder.
+
+#### Usage:
+
+1. **Make the script executable**:
     ```bash
-    yarn --version
+    chmod +x update-repos.sh
     ```
 
-- **Create React App**:
+2. **Run the script**:
     ```bash
-    create-react-app --version
+    ./update-repos.sh
     ```
 
-- **React Native CLI**:
+The script will loop through each repository in the `Documents/GitHub` folder and attempt to update the branches if they exist.
+
+### 4. Install Applications
+
+The `install-apps.sh` script installs common applications used for development and work, including Postman, VSCode, Xcode, MS Office, LINE, Sourcetree, TablePlus, FileZilla, and Google Chrome.
+
+#### Usage:
+
+1. **Make the script executable**:
     ```bash
-    react-native --version
+    chmod +x install-apps.sh
     ```
 
-- **Go**:
+2. **Run the script**:
     ```bash
-    go version
+    ./install-apps.sh
     ```
 
-- **Python**:
-    ```bash
-    python3 --version
-    ```
-
-- **Pip**:
-    ```bash
-    pip3 --version
-    ```
-
-- **Java**:
-    ```bash
-    java -version
-    ```
-
-- **Composer**:
-    ```bash
-    composer --version
-    ```
-
-## Contribution
-
-Feel free to submit issues or pull requests if you find any bugs or want to add new features.
+This script will install the following applications using Homebrew Cask:
+- Postman
+- Visual Studio Code (VSCode)
+- Xcode
+- Microsoft Office (Word, Excel, PowerPoint, etc.)
+- LINE
+- Sourcetree
+- TablePlus
+- FileZilla
+- Google Chrome
 
 ## License
 
